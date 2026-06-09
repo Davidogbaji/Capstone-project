@@ -3,15 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A clean and simple to-do list app with localStorage and filter options.">
-  <title>My To-Do App</title>
+  <meta name="description" content="A clean and modern to-do list app with dark mode, localStorage, and filters.">
+  <title>✨ To‑Do App | David</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts for a nicer look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="app">
     <header class="app-header">
-      <h1>My Tasks</h1>
-      <span id="taskCount">0 tasks</span>
+      <h1>📝 My Tasks</h1>
+      <div class="header-right">
+        <span id="taskCount" class="task-count">0 tasks</span>
+        <button id="themeToggle" class="theme-toggle" aria-label="Dark mode toggle">
+          🌙
+        </button>
+      </div>
     </header>
 
     <form id="taskForm" class="add-form">
@@ -33,7 +40,7 @@
     <ul id="taskList"></ul>
 
     <p id="emptyMsg" class="empty-msg">
-      No tasks yet. Add one above!
+      ✨ No tasks yet. Add one above!
     </p>
   </div>
 

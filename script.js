@@ -5,12 +5,35 @@ const taskList   = document.getElementById('taskList')
 const taskCount  = document.getElementById('taskCount')
 const emptyMsg   = document.getElementById('emptyMsg')
 const filterBtns = document.querySelectorAll('.filter-btn')
+const themeToggle = document.getElementById('themeToggle')
 
 // ── DATA ─────────────────────────────────────────────────────
-let tasks  = []       // the ONE source of truth — all tasks live here
-let filter = 'all'    // current filter: 'all', 'active', or 'completed'
+let tasks  = []
+let filter = 'all'
 
-// ── SAVE AND LOAD ────────────────────────────────────────────
+// ── DARK MODE TOGGLE ─────────────────────────────────────────
+// Load saved theme from localStorage
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme')
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark')
+    if (themeToggle) themeToggle.textContent = '☀️'
+  } else {
+    document.body.classList.remove('dark')
+    if (themeToggle) themeToggle.textContent = '🌙'
+  }
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('dark')
+  const isDark = document.body.classList.contains('dark')
+  localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  if (themeToggle) {
+    themeToggle.textContent = isDark ? '☀️' : '🌙'
+  }
+}
+
+// ── SAVE AND LOAD TASKS ──────────────────────────────────────
 function saveTasks() {
   localStorage.setItem('tasks', JSON.stringify(tasks))
 }
@@ -22,7 +45,7 @@ function loadTasks() {
   }
 }
 
-// ── CREATE A TASK OBJECT ─────────────────────────────────────
+// ── CREATE TASK OBJECT ───────────────────────────────────────
 function createTask(text) {
   return {
     id:        Date.now().toString(),
@@ -95,7 +118,7 @@ function deleteTask(id) {
   render()
 }
 
-// ── TOGGLE COMPLETE ──────────────────────────────────────────
+// ── TOGGLE COMPLETE (the original toggle for tasks) ──────────
 function toggleComplete(id) {
   const task = tasks.find(task => task.id === id)
   if (task) {
@@ -122,6 +145,11 @@ filterBtns.forEach(btn => {
   })
 })
 
+if (themeToggle) {
+  themeToggle.addEventListener('click', toggleTheme)
+}
+
 // ── STARTUP ──────────────────────────────────────────────────
 loadTasks()
+loadTheme()    // Load saved dark mode preference
 render()

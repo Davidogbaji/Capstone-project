@@ -15,26 +15,22 @@ body {
   transition: background 0.3s ease;
 }
 
-/* Dark mode body */
 body.dark {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
 .app {
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(0px);
   border-radius: 28px;
-  box-shadow: 0 25px 45px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.1);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.2);
   padding: 32px;
   width: 100%;
-  max-width: 560px;
+  max-width: 680px;
   transition: all 0.3s ease;
 }
 
-/* Dark mode card */
 body.dark .app {
   background: rgba(30, 30, 40, 0.95);
-  box-shadow: 0 25px 45px rgba(0,0,0,0.4);
   color: #f0f0f0;
 }
 
@@ -42,7 +38,7 @@ body.dark .app {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   flex-wrap: wrap;
   gap: 12px;
 }
@@ -59,20 +55,19 @@ body.dark .app {
 body.dark .app-header h1 {
   background: linear-gradient(135deg, #a5b4fc, #c084fc);
   background-clip: text;
-  -webkit-background-clip: text;
 }
 
 .header-right {
   display: flex;
-  align-items: center;
   gap: 16px;
+  align-items: center;
 }
 
 .task-count {
-  font-size: 0.9rem;
   background: #f0f2f5;
   padding: 4px 12px;
   border-radius: 40px;
+  font-size: 0.85rem;
   font-weight: 500;
 }
 
@@ -81,67 +76,52 @@ body.dark .task-count {
   color: #ddd;
 }
 
-/* Theme toggle button */
 .theme-toggle {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 6px;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
   background: #f0f2f5;
+  border: none;
+  font-size: 1.4rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .theme-toggle:hover {
-  background: #e0e0e0;
   transform: rotate(15deg);
+  background: #e0e0e0;
 }
 
 body.dark .theme-toggle {
   background: #2a2a35;
-  color: #ffd966;
 }
 body.dark .theme-toggle:hover {
   background: #3a3a48;
 }
 
-/* Form */
 .add-form {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 
-.add-form input {
-  flex: 1;
+.add-form input[type="text"] {
+  flex: 2;
   padding: 12px 16px;
   border: 1px solid #e2e8f0;
   border-radius: 60px;
   font-size: 1rem;
-  outline: none;
-  transition: all 0.2s;
   font-family: inherit;
+  outline: none;
 }
 
-.add-form input:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102,126,234,0.2);
-}
-
-body.dark .add-form input {
-  background: #2a2a35;
-  border-color: #3a3a48;
-  color: #fff;
-}
-body.dark .add-form input:focus {
-  border-color: #a5b4fc;
-  box-shadow: 0 0 0 3px rgba(165,180,252,0.2);
+.add-form input[type="datetime-local"] {
+  flex: 1;
+  padding: 12px;
+  border-radius: 60px;
+  border: 1px solid #e2e8f0;
+  font-family: inherit;
 }
 
 .add-form button {
@@ -150,10 +130,9 @@ body.dark .add-form input:focus {
   color: white;
   border: none;
   border-radius: 60px;
-  cursor: pointer;
-  font-size: 1rem;
   font-weight: 600;
-  transition: transform 0.1s ease, box-shadow 0.2s;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .add-form button:hover {
@@ -161,27 +140,22 @@ body.dark .add-form input:focus {
   box-shadow: 0 8px 20px rgba(102,126,234,0.3);
 }
 
-.add-form button:active {
-  transform: scale(0.98);
-}
-
-/* Filter bar */
 .filter-bar {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 24px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
-.filter-btn {
+.filter-btn, .clear-btn {
   padding: 8px 18px;
-  border: 1px solid #e2e8f0;
   border-radius: 60px;
+  border: 1px solid #e2e8f0;
   background: white;
   cursor: pointer;
-  font-size: 0.85rem;
   font-weight: 500;
-  transition: all 0.2s;
+  transition: 0.2s;
 }
 
 .filter-btn.active {
@@ -190,7 +164,17 @@ body.dark .add-form input:focus {
   border-color: #111;
 }
 
-body.dark .filter-btn {
+.clear-btn {
+  background: #fee2e2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+.clear-btn:hover {
+  background: #fecaca;
+}
+
+body.dark .filter-btn, body.dark .clear-btn {
   background: #2a2a35;
   border-color: #3a3a48;
   color: #ddd;
@@ -198,43 +182,34 @@ body.dark .filter-btn {
 body.dark .filter-btn.active {
   background: #a5b4fc;
   color: #111;
-  border-color: #a5b4fc;
 }
-
-.filter-btn:hover {
-  transform: translateY(-2px);
-}
-
-/* Task list */
-#taskList {
-  list-style: none;
-  margin-bottom: 16px;
+body.dark .clear-btn {
+  background: #3a2a2a;
+  color: #ff8a8a;
 }
 
 .task-item {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  align-items: flex-start;
+  gap: 12px;
   padding: 14px 0;
   border-bottom: 1px solid #edf2f7;
   animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 body.dark .task-item {
   border-bottom-color: #2a2a35;
 }
 
-.task-text {
+.task-content {
   flex: 1;
-  cursor: pointer;
+}
+
+.task-text {
   font-size: 1rem;
-  transition: all 0.2s;
-  padding: 4px 0;
+  cursor: pointer;
+  display: inline-block;
+  word-break: break-word;
 }
 
 .task-item.completed .task-text {
@@ -242,35 +217,59 @@ body.dark .task-item {
   color: #94a3b8;
 }
 
-body.dark .task-item.completed .task-text {
+.task-due {
+  font-size: 0.7rem;
   color: #6b7280;
+  margin-top: 4px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
-.delete-btn {
+.task-due.overdue {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.edit-btn, .delete-btn {
   background: none;
   border: none;
-  color: #cbd5e1;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
-  padding: 6px 10px;
+  padding: 4px 8px;
   border-radius: 40px;
-  transition: all 0.2s;
+  transition: 0.2s;
+}
+
+.edit-btn:hover {
+  background: #e0e7ff;
+  color: #4f46e5;
 }
 
 .delete-btn:hover {
-  color: #ef4444;
   background: #fee2e2;
+  color: #dc2626;
 }
 
-body.dark .delete-btn:hover {
-  background: #3a2a2a;
-  color: #ff8a8a;
+.task-actions {
+  display: flex;
+  gap: 4px;
 }
 
 .empty-msg {
   text-align: center;
-  color: #94a3b8;
-  font-size: 0.9rem;
   padding: 40px 0;
+  color: #94a3b8;
   font-style: italic;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 560px) {
+  .app { padding: 20px; }
+  .add-form { flex-direction: column; }
+  .add-form input, .add-form button { width: 100%; }
 }
